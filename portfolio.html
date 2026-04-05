@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hamza Zgaoui — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue: #0F2D6B;
+    --blue-mid: #1A4494;
+    --blue-light: #2E5FBF;
+    --accent: #C8A96E;
+    --white: #FFFFFF;
+    --off-white: #F7F8FC;
+    --text: #111827;
+    --muted: #6B7280;
+    --border: #E5E7EB;
+  }
+
+  html, body {
+    width: 210mm;
+    margin: 0 auto;
+    font-family: 'Inter', sans-serif;
+    background: #e8e8e8;
+    color: var(--text);
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--blue);
+    padding: 28px 32px 24px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 16px;
+  }
+
+  .header-left h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: -0.5px;
+  }
+
+  .header-left .title {
+    margin-top: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .header-right {
+    text-align: right;
+  }
+
+  .contact-line {
+    font-size: 10.5px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.9;
+  }
+
+  .contact-line span {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--blue-mid);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .stat {
+    padding: 14px 16px;
+    border-right: 1px solid rgba(255,255,255,0.12);
+    text-align: center;
+  }
+
+  .stat:last-child { border-right: none; }
+
+  .stat-number {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    letter-spacing: -0.5px;
+  }
+
+  .stat-label {
+    font-size: 9px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-top: 4px;
+  }
+
+  /* ── BODY ── */
+  .body {
+    padding: 20px 32px 24px;
+  }
+
+  .section-title {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--blue-light);
+    border-left: 3px solid var(--accent);
+    padding-left: 8px;
+    margin-bottom: 14px;
+  }
+
+  /* ── CASE STUDIES GRID ── */
+  .cases {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .case {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .case-header {
+    background: var(--off-white);
+    padding: 10px 14px 8px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .case-num {
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--blue-light);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  .case-title {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--blue);
+    line-height: 1.2;
+  }
+
+  .case-metric {
+    background: var(--blue);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 800;
+    padding: 6px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    line-height: 1;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .case-metric small {
+    display: block;
+    font-size: 7.5px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.65);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 2px;
+  }
+
+  .case-body {
+    padding: 10px 14px 12px;
+  }
+
+  .case-row {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+
+  .case-row:last-child { margin-bottom: 0; }
+
+  .row-label {
+    font-size: 8.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    padding-top: 1px;
+  }
+
+  .row-content {
+    font-size: 10px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  /* Full-width case */
+  .case.full {
+    grid-column: 1 / -1;
+  }
+
+  .case.full .case-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px 20px;
+  }
+
+  .case.full .case-row {
+    grid-template-columns: 1fr;
+    margin-bottom: 0;
+  }
+
+  .case.full .row-label {
+    margin-bottom: 2px;
+  }
+
+  /* ── SKILLS ── */
+  .skills-section {
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .skill-group h4 {
+    font-size: 8.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--blue);
+    margin-bottom: 6px;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .tag {
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 9px;
+    font-weight: 500;
+    padding: 3px 7px;
+    border-radius: 3px;
+    line-height: 1;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--blue);
+    padding: 10px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+  }
+
+  .footer-text {
+    font-size: 9px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 1px;
+  }
+
+  .footer-name {
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    html, body {
+      width: 210mm;
+      background: white;
+    }
+    .page {
+      box-shadow: none;
+    }
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <h1>Hamza Zgaoui</h1>
+      <div class="title">Community Manager &amp; Project Manager</div>
+    </div>
+    <div class="header-right">
+      <div class="contact-line"><span>hamzazgaoui97@gmail.com</span></div>
+      <div class="contact-line"><span>+213 697 33 20 36</span></div>
+      <div class="contact-line">LinkedIn: <span>linkedin.com/in/hamzazgaoui</span></div>
+      <div class="contact-line">Available for new opportunities</div>
+    </div>
+  </div>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-number">$90K+</div>
+      <div class="stat-label">Revenue Generated</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">1,400+</div>
+      <div class="stat-label">Followers Grown</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">500+</div>
+      <div class="stat-label">Affiliates Managed</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">6+</div>
+      <div class="stat-label">Clients Acquired</div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <div class="section-title">Selected Work — Case Studies</div>
+
+    <div class="cases">
+
+      <!-- CASE 1 -->
+      <div class="case">
+        <div class="case-header">
+          <div>
+            <div class="case-num">01 — Email Marketing</div>
+            <div class="case-title">Gamified Flash Sale<br>Campaign</div>
+          </div>
+          <div class="case-metric">$90K+<small>Revenue</small></div>
+        </div>
+        <div class="case-body">
+          <div class="case-row">
+            <div class="row-label">Challenge</div>
+            <div class="row-content">Drive seasonal revenue with a memorable Black Friday &amp; Christmas campaign in a crowded market.</div>
+          </div>
+          <div class="case-row">
+            <div class="row-label">Approach</div>
+            <div class="row-content">Designed a gamified mechanic: logo color = discount level. Brighter green = bigger deal. Built anticipation over 7 days through email, website &amp; dashboard — flash windows of just 2 minutes created urgency &amp; community buzz.</div>
+          </div>
+          <div class="case-row">
+            <div class="row-label">My Role</div>
+            <div class="row-content">End-to-end: Klaviyo automation setup · coupon management · logo timing · community monitoring · 12+ email copies · proof gathering · manager approval.</div>
+          </div>
+          <div class="case-row">
+            <div class="row-label">Result</div>
+            <div class="row-content">Campaign contributed to <strong>$90K+ in revenue</strong>. Community actively tracked logo color changes across channels, amplifying reach organically.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CASE 2 -->
+      <div class="case">
+        <div class="case-header">
+          <div>
+            <div class="case-num">02 — Social Media</div>
+            <div class="case-title">Instagram Growth<br>From Zero</div>
+          </div>
+          <div class="case-metric">1,400+<small>Followers</small></div>
+        </div>
+        <div class="case-body">
+          <div class="case-row">
+            <div class="row-label">Challenge</div>
+            <div class="row-content">Launch and grow a brand-new Instagram account for a fintech/trading brand with zero existing audience.</div>
+          </div>
+          <div class="case-row">
+            <div class="row-label">Approach</div>
+            <div class="row-content">Built a full content system: weekly market event posts, product launches, trader payouts &amp; testimonials. Maintained cinematic, brand-consistent visuals at 3–4 posts/week.</div>
+          </div>
+          <div class="case-row">
+            <div class="row-label">My Role</div>
+            <div class="row-content">Full cycle: content brief · caption writing · designer briefing &amp; QC · publishing · daily comment &amp; DM management.</div>
+          </div>
+          <div class="case-row">
+            <div class="row-label">Result</div>
+            <div class="row-content"><strong>0 → 1,400+ followers in 9 months</strong> with consistent engagement. Top post: 39 likes, 14 comments, 4 shares organically.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CASE 3 -->
+      <div class="case">
+        <div class="case-header">
+          <div>
+            <div class="case-num">03 — Performance Marketing</div>
+            <div class="case-title">Paid Campaign<br>Creative Pipeline</div>
+          </div>
+          <div class="case-metric">$2K/mo<small>Ad Budget</small></div>
+        </div>
+        <div class="case-body">
+          <div class="case-row">
+            <div class="row-label">Challenge</div>
+            <div class="row-content">Maintain a consistent pipeline of paid ad creatives across promotions, education &amp; product launches simultaneously.</div>
+          </div>
+          <div class="case-row">
+            <div class="row-label">Approach</div>
+            <div class="row-content">Owned the full creative workflow — from brief to live. Coordinated with designers for on-brand creatives, wrote all ad copy, and handed structured briefs to the media buyer for execution.</div>
+          </div>
+          <div class="case-row">
+            <div class="row-label">My Role</div>
+            <div class="row-content">Ad copywriting · designer briefing &amp; QC · manager approval · media buyer handoff briefs.</div>
+          </div>
+          <div class="case-row">
+            <div class="row-label">Result</div>
+            <div class="row-content">Sustained <strong>$1,500–$2,000/month</strong> in paid campaign activity across multiple concurrent campaign types with zero creative delays.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CASE 4 -->
+      <div class="case">
+        <div class="case-header">
+          <div>
+            <div class="case-num">04 — Business Development</div>
+            <div class="case-title">Client Acquisition<br>Audits</div>
+          </div>
+          <div class="case-metric">6+<small>Clients Won</small></div>
+        </div>
+        <div class="case-body">
+          <div class="case-row">
+            <div class="row-label">Challenge</div>
+            <div class="row-content">Convince potential clients across diverse industries to sign on by demonstrating clear digital gaps and growth opportunities.</div>
+          </div>
+          <div class="case-row">
+            <div class="row-label">Approach</div>
+            <div class="row-content">Built comprehensive audits covering SEO, social media, website UX, competitor benchmarking, and actionable recommendations for each prospect.</div>
+          </div>
+          <div class="case-row">
+            <div class="row-label">My Role</div>
+            <div class="row-content">Full audit production: research · analysis · deck design · recommendations. Industries: woodmaking, fashion (prêt-à-porter), chocolate &amp; more.</div>
+          </div>
+          <div class="case-row">
+            <div class="row-label">Result</div>
+            <div class="row-content"><strong>6+ clients acquired</strong> across diverse sectors. Audits became a repeatable process used for every new prospect.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CASE 5 — FULL WIDTH -->
+      <div class="case full">
+        <div class="case-header">
+          <div>
+            <div class="case-num">05 — Community &amp; Operations</div>
+            <div class="case-title">Affiliate Program Management</div>
+          </div>
+          <div class="case-metric">500+<small>Affiliates</small></div>
+        </div>
+        <div class="case-body">
+          <div class="case-row">
+            <div class="row-label">Challenge</div>
+            <div class="row-content">Manage a large affiliate network across Discord &amp; Email — keeping active affiliates engaged and ensuring commission accuracy.</div>
+          </div>
+          <div class="case-row">
+            <div class="row-label">My Role</div>
+            <div class="row-content">Broadcast promotions &amp; launches · answer affiliate queries · coordinate monthly commission verification with finance team · maintain affiliate dashboard.</div>
+          </div>
+          <div class="case-row">
+            <div class="row-label">Result</div>
+            <div class="row-content">Maintained operational consistency across <strong>500+ affiliates</strong> with zero commission disputes during tenure. Streamlined comms reduced response time significantly.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SKILLS -->
+    <div class="skills-section">
+      <div class="section-title">Skills &amp; Tools</div>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h4>Marketing &amp; Content</h4>
+          <div class="skill-tags">
+            <span class="tag">Email Marketing</span>
+            <span class="tag">Klaviyo</span>
+            <span class="tag">Copywriting</span>
+            <span class="tag">Content Strategy</span>
+            <span class="tag">Campaign Management</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Social &amp; Community</h4>
+          <div class="skill-tags">
+            <span class="tag">Instagram</span>
+            <span class="tag">Discord</span>
+            <span class="tag">Community Management</span>
+            <span class="tag">Meta Ads</span>
+            <span class="tag">Affiliate Management</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Analytics &amp; Strategy</h4>
+          <div class="skill-tags">
+            <span class="tag">SEO Audit</span>
+            <span class="tag">Competitor Analysis</span>
+            <span class="tag">Project Management</span>
+            <span class="tag">Client Reporting</span>
+            <span class="tag">Google Analytics</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-text">Portfolio · 2025</div>
+    <div class="footer-name">Hamza Zgaoui</div>
+    <div class="footer-text">hamzazgaoui97@gmail.com</div>
+  </div>
+
+</div>
+</body>
+</html>
