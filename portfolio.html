@@ -916,6 +916,298 @@
       .hero-ctas { flex-direction: column; }
       .btn-primary, .btn-secondary { justify-content: center; }
     }
+
+    /* ──────────────────────────────────────────────
+       PAID MEDIA SECTION
+    ────────────────────────────────────────────── */
+    #paid-media {
+      background: var(--bg-section);
+    }
+
+    /* Scale stats row */
+    .pm-scale-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .pm-scale-stat {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      text-align: center;
+    }
+
+    .pm-scale-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .pm-scale-num span { color: var(--accent); }
+
+    .pm-scale-label {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* Dashboards strip */
+    .pm-dashboards-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .pm-dashboards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 48px;
+    }
+
+    .pm-dashboard-frame {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .pm-dashboard-frame:hover { border-color: var(--border-hover); }
+
+    .pm-dashboard-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .pm-dashboard-caption {
+      padding: 10px 14px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .pm-dashboard-caption .spent {
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    /* Approach blocks */
+    .pm-approach {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+
+    .pm-approach-block {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+    }
+
+    .pm-approach-block .step-number { margin-bottom: 8px; }
+
+    .pm-approach-block .step-title {
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+
+    .pm-approach-block .step-body { font-size: 14px; }
+
+    /* Ad examples grid */
+    .pm-ads-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .pm-ads-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .pm-ad-frame {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.25s var(--ease);
+    }
+
+    .pm-ad-frame:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+    }
+
+    .pm-ad-frame img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+
+    .pm-ad-caption {
+      padding: 12px 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .pm-ad-type {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .pm-ad-desc {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Role boundary note */
+    .pm-boundary {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 18px 24px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .pm-boundary strong { color: var(--text); font-weight: 500; }
+
+    /* Affiliate proof screenshot */
+    .card-proof {
+      margin-top: 4px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .card-proof img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+
+    .card-proof-caption {
+      padding: 8px 12px;
+      background: var(--bg-section);
+      font-size: 11px;
+      color: var(--dim);
+      border-top: 1px solid var(--border);
+    }
+
+    /* Responsive paid media */
+    @media (max-width: 1024px) {
+      .pm-ads-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .pm-scale-row { grid-template-columns: repeat(2, 1fr); }
+      .pm-dashboards { grid-template-columns: 1fr; }
+      .pm-approach { grid-template-columns: 1fr; }
+      .pm-ads-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 480px) {
+      .pm-ads-grid { grid-template-columns: 1fr 1fr; }
+      .pm-scale-row { grid-template-columns: 1fr; }
+    }
+
+    /* ──────────────────────────────────────────────
+       STRATEGIC AUDITS SECTION
+    ────────────────────────────────────────────── */
+    .audit-section { padding: 80px 0; background: #0a0a0a; border-top: 1px solid rgba(255,255,255,0.05); }
+    .audit-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 32px; margin-top: 48px; }
+    .audit-card { 
+      background: #141414; 
+      border-radius: 12px; 
+      overflow: hidden; 
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .audit-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+    .audit-card img { width: 100%; height: auto; display: block; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .audit-content { padding: 20px; }
+    .audit-tag { font-family: 'Space Grotesk', sans-serif; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 8px; }
+    .audit-title { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+    .audit-desc { font-size: 14px; color: var(--text-dim); line-height: 1.6; }
+
+    @media (max-width: 768px) {
+      .audit-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ──────────────────────────────────────────────
+       PRINT & PDF EXPORT OVERRIDES
+    ────────────────────────────────────────────── */
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        background-color: var(--bg) !important;
+        color: var(--text) !important;
+      }
+      .fade-in {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+        visibility: visible !important;
+        animation: none !important;
+      }
+      img {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        object-fit: contain !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .case-card, .pm-dashboard-frame, .pm-ad-frame, .skill-card, .metric-cell, .detail-row, .card-proof, .audit-card {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        overflow: visible !important;
+      }
+      .container {
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 5% !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -928,6 +1220,7 @@
       <li><a href="#metrics">Results</a></li>
       <li><a href="#flagship">Case Study</a></li>
       <li><a href="#cases">Work</a></li>
+      <li><a href="#paid-media">Paid Media</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#about">About</a></li>
     </ul>
@@ -1106,8 +1399,21 @@
       </div>
     </div>
 
-    <div class="mockup-placeholder fade-in">
-      Screenshots &amp; mockups from the Green Shades campaign available upon request.
+    <div class="pm-dashboards fade-in" style="margin-top: 32px; grid-template-columns: 1fr 1fr;">
+      <div class="pm-dashboard-frame">
+        <img src="assets/proof/revenue-snapshot.png" alt="Revenue snapshot ($90K+)" loading="lazy">
+        <div class="pm-dashboard-caption">
+          <span>Campaign Revenue Dashboard</span>
+          <span class="spent">$90K+ Attributable</span>
+        </div>
+      </div>
+      <div class="pm-dashboard-frame">
+        <img src="assets/proof/email-to-discord-flow.png" alt="Cross-channel flow architecture" loading="lazy">
+        <div class="pm-dashboard-caption">
+          <span>Cross-channel Architecture</span>
+          <span class="spent">Email, Social &amp; Discord Integrated</span>
+        </div>
+      </div>
     </div>
 
   </div>
@@ -1164,6 +1470,10 @@
           The remaining 470 were managed through structured email updates.
           Handled all affiliate questions and routed escalations to the right internal teams.
         </div>
+        <div class="card-proof">
+          <img src="assets/proof/affiliates .jpeg" alt="Affiliate commission ledger showing recurring sales and commissions from a top-performing partner" loading="lazy">
+          <div class="card-proof-caption">Sample commission ledger — a top affiliate's recurring purchases tracked across multiple invoices</div>
+        </div>
         <div class="card-result">500 affiliates managed with consistent communication</div>
       </div>
 
@@ -1179,6 +1489,228 @@
           his manager presented them to clients in pitch meetings.
         </div>
         <div class="card-result">Contributed to acquiring 6+ new agency clients</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────────── PAID MEDIA COPYWRITING ──────────────────── -->
+<section id="paid-media">
+  <div class="container">
+
+    <div class="fade-in">
+      <div class="section-label">Paid Media Copywriting</div>
+      <h2 class="section-title">Ad copy at scale — £25K–£35K/month in spend</h2>
+      <p class="section-sub">
+        Wrote ad copy for a paid media operation running across 70–120+ Meta campaigns per month
+        for a funded trading platform. Worked from manager briefs to create multiple copy variations
+        per campaign for systematic A/B testing across video, banner, and Instagram formats.
+      </p>
+      <div class="divider"></div>
+    </div>
+
+    <!-- Scale at a glance -->
+    <div class="pm-scale-row fade-in">
+      <div class="pm-scale-stat">
+        <div class="pm-scale-num"><span>£25K</span>–£35K</div>
+        <div class="pm-scale-label">monthly ad spend managed<br>across all campaigns</div>
+      </div>
+      <div class="pm-scale-stat">
+        <div class="pm-scale-num"><span>70–120</span>+</div>
+        <div class="pm-scale-label">active Meta campaigns<br>per month</div>
+      </div>
+      <div class="pm-scale-stat">
+        <div class="pm-scale-num"><span>5</span> variations</div>
+        <div class="pm-scale-label">copy variants per campaign<br>for A/B testing</div>
+      </div>
+    </div>
+
+    <!-- Dashboard screenshots -->
+    <div class="fade-in">
+      <div class="pm-dashboards-label">Campaign dashboard — real data, three separate periods</div>
+      <div class="pm-dashboards">
+
+        <div class="pm-dashboard-frame">
+          <img src="assets/proof/media buying 1.png" alt="Meta Ads Manager dashboard November 2024 — 97 campaigns, £27,549 spent" loading="lazy">
+          <div class="pm-dashboard-caption">
+            <span>Nov 2024 · 97 campaigns</span>
+            <span class="spent">£27,549 spent</span>
+          </div>
+        </div>
+
+        <div class="pm-dashboard-frame">
+          <img src="assets/proof/media buying 2.png" alt="Meta Ads Manager dashboard March–April 2025 — 119 campaigns, £34,811 spent" loading="lazy">
+          <div class="pm-dashboard-caption">
+            <span>Mar–Apr 2025 · 119 campaigns</span>
+            <span class="spent">£34,811 spent</span>
+          </div>
+        </div>
+
+        <div class="pm-dashboard-frame">
+          <img src="assets/proof/media buying 3.png" alt="Meta Ads Manager dashboard May–June 2025 — 70 campaigns, £24,321 spent" loading="lazy">
+          <div class="pm-dashboard-caption">
+            <span>May–Jun 2025 · 70 campaigns</span>
+            <span class="spent">£24,321 spent</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Audience approach -->
+    <div class="pm-approach fade-in">
+      <div class="pm-approach-block">
+        <div class="step-number">Existing Clients</div>
+        <div class="step-title">Promotion-focused messaging</div>
+        <p class="step-body">
+          Copy tied to active offers and platform updates — written for an audience
+          already familiar with the brand. The goal was <strong>re-engagement and upsell</strong>,
+          not explanation. Short, direct, offer-first.
+        </p>
+      </div>
+      <div class="pm-approach-block">
+        <div class="step-number">New Audiences</div>
+        <div class="step-title">Acquisition offers &amp; educational content</div>
+        <p class="step-body">
+          Copy structured around low-cost trial account offers (e.g., $99 entry for a $449 product)
+          and educational content like the <strong>TickTickTrivia series</strong> — short-form trading
+          education that drove direct purchases and proved educational copy can convert.
+        </p>
+      </div>
+    </div>
+
+    <!-- Ad examples -->
+    <div class="fade-in">
+      <div class="pm-ads-label">Ad copy examples — live campaigns</div>
+      <div class="pm-ads-grid">
+
+        <div class="pm-ad-frame">
+          <img src="assets/proof/media buying 4.png" alt="Meta ad: $99 entry offer for new users — acquisition copy" loading="lazy">
+          <div class="pm-ad-caption">
+            <div class="pm-ad-type">Acquisition · New users</div>
+            <div class="pm-ad-desc">Low-cost trial offer — anchored against original price to reduce entry friction</div>
+          </div>
+        </div>
+
+        <div class="pm-ad-frame">
+          <img src="assets/proof/media buying 5.jpeg" alt="Meta ad: futures trading precision — educational video copy" loading="lazy">
+          <div class="pm-ad-caption">
+            <div class="pm-ad-type">Educational · Video</div>
+            <div class="pm-ad-desc">TickTickTrivia series — short trading education written to convert, not just inform</div>
+          </div>
+        </div>
+
+        <div class="pm-ad-frame">
+          <img src="assets/proof/media buying 6.jpeg" alt="Meta ad: Why Traders Love Quantower — feature-focused banner" loading="lazy">
+          <div class="pm-ad-caption">
+            <div class="pm-ad-type">Feature · Banner</div>
+            <div class="pm-ad-desc">Product partnership copy — feature-led with a direct launch offer CTA</div>
+          </div>
+        </div>
+
+        <div class="pm-ad-frame">
+          <img src="assets/proof/media buying 7.jpeg" alt="Meta ad: Spooktober 60% off — seasonal promotion copy" loading="lazy">
+          <div class="pm-ad-caption">
+            <div class="pm-ad-type">Promotional · Seasonal</div>
+            <div class="pm-ad-desc">Seasonal discount copy — stacked offer (60% + 5% via payment method) for urgency</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Role boundary note -->
+    <div class="pm-boundary fade-in">
+      <strong>Role clarity:</strong> I did not run these campaigns technically — that was the media buyer's responsibility.
+      My ownership was the <strong>copy, creative briefs, audience-specific messaging, and QA before launch</strong>.
+      I also wrote copy for a separate clothing brand client (~$7K/month ad spend) using the same approach:
+      segment the audience, brief the creative, write multiple variants, test.
+    </div>
+
+  </div>
+</section>
+
+<!-- ──────────────────── STRATEGIC AUDITS ──────────────────── -->
+<section id="audits" class="audit-section">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Consulting &amp; Strategy</div>
+      <h2 class="section-title">Strategic Audits &amp; Playbooks</h2>
+      <p class="section-sub">Evidence of deep-dive technical audits and growth roadmaps delivered to high-ticket clients.</p>
+      <div class="divider"></div>
+    </div>
+
+    <div class="audit-grid">
+      
+      <!-- Tech Audit 1 -->
+      <div class="audit-card fade-in">
+        <img src="assets/proof/Presentation 1.png" alt="Technical Website Audit - Performance Metrics" loading="lazy">
+        <div class="audit-content">
+          <div class="audit-tag">Technical Audit</div>
+          <div class="audit-title">Full Performance &amp; Core Web Vitals Audit</div>
+          <div class="audit-desc">Diagnosing profit-bleeding site speed issues. This specific audit identified a 9.5s FCP on mobile, leading to a prioritized technical roadmap to reclaim lost conversions.</div>
+        </div>
+      </div>
+
+      <!-- Tech Audit 2 -->
+      <div class="audit-card fade-in">
+        <img src="assets/proof/presentation 10.png" alt="Desktop Speed Indicators Audit" loading="lazy">
+        <div class="audit-content">
+          <div class="audit-tag">Technical Audit</div>
+          <div class="audit-title">Desktop Experience &amp; SEO Impact Analysis</div>
+          <div class="audit-desc">Key findings on First Contentful Paint and Speed Index for desktop users, quantifying the negative impact of slow loading on organic search ranking.</div>
+        </div>
+      </div>
+
+      <!-- Roadmap -->
+      <div class="audit-card fade-in">
+        <img src="assets/proof/presentation 8.png" alt="Strategic Recommendations & Roadmap" loading="lazy">
+        <div class="audit-content">
+          <div class="audit-tag">Strategy Roadmap</div>
+          <div class="audit-title">3-Pillar Growth &amp; Rebranding Recommendation</div>
+          <div class="audit-desc">A strategic pivot plan presented to a real-estate client: Rebranding, technical migration to Framer CMS, and a high-value content editorial line.</div>
+        </div>
+      </div>
+
+      <!-- Institutional Strategy -->
+      <div class="audit-card fade-in">
+        <img src="assets/proof/presentation 13.png" alt="DEWA Website Strategic Points" loading="lazy">
+        <div class="audit-content">
+          <div class="audit-tag">Institutional Consulting</div>
+          <div class="audit-title">Government-Level UX &amp; Branding Analysis</div>
+          <div class="audit-desc">Institutional roadmap for the DEWA (Dubai Electricity &amp; Water Authority) website, analyzing service orientation, digital transformation, and brand credibility.</div>
+        </div>
+      </div>
+
+      <!-- Paid Media Findings -->
+      <div class="audit-card fade-in">
+        <img src="assets/proof/presentation 12.png" alt="Meta Ads Audit Findings" loading="lazy">
+        <div class="audit-content">
+          <div class="audit-tag">Media Audit</div>
+          <div class="audit-title">Meta Ads Diagnostic: Finding Profit Leaks</div>
+          <div class="audit-desc">Audit of existing Facebook/Instagram ad accounts. Identified total reliance on organic reach and a lack of amplified conversion campaigns.</div>
+        </div>
+      </div>
+
+      <!-- Influence Strategy -->
+      <div class="audit-card fade-in">
+        <img src="assets/proof/presentation 15.png" alt="Influence Marketing Strategy" loading="lazy">
+        <div class="audit-content">
+          <div class="audit-tag">Influence Strategy</div>
+          <div class="audit-title">Influencer Collaboration &amp; Authority Framework</div>
+          <div class="audit-desc">Strategic argument for leveraging local influencers to bridge the trust gap with younger audiences and humanize technical subject matter.</div>
+        </div>
+      </div>
+
+      <!-- Content Analysis -->
+      <div class="audit-card fade-in">
+        <img src="assets/proof/presentation 5.png" alt="Personal Success Content Analysis" loading="lazy">
+        <div class="audit-content">
+          <div class="audit-tag">Content Strategy</div>
+          <div class="audit-title">Personal Brand Authority &amp; Engagement Audit</div>
+          <div class="audit-desc">Analyzing high-impact social content to reinforce credibility and success-driven imagery for client acquisition.</div>
+        </div>
       </div>
 
     </div>
