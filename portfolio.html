@@ -777,10 +777,34 @@
                 transform: none !important;
                 transition: none !important;
                 visibility: visible !important;
+                animation: none !important;
+            }
+
+            /* Fix image rendering issues in PDF exporters */
+            img {
+                display: block !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                height: auto !important;
+                object-fit: contain !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .proof-img-wrap, .strip-proof {
+                overflow: visible !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            /* Remove height restriction on strip-proof images specifically */
+            .strip-proof img {
+                height: auto !important;
+                max-height: 250px !important; 
             }
 
             /* Prevents awkward page breaks inside important sections */
-            .flagship, .strip, .trust-bar, .cap-item, .post-mortem, .proof-img-wrap, .section-divider {
+            .flagship, .strip, .trust-bar, .cap-item, .post-mortem, .section-divider {
                 page-break-inside: avoid;
                 break-inside: avoid;
             }
