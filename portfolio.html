@@ -755,6 +755,42 @@
             .hero h1 { font-size: 34px; }
             .flagship-title { font-size: 30px; }
         }
+
+        /* ─────────────────────────────────────────
+           PRINT & PDF EXPORT
+        ───────────────────────────────────────── */
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            body {
+                background-color: var(--bg) !important;
+                color: var(--text) !important;
+            }
+
+            /* Disable scroll animations for PDF so everything is visible */
+            .reveal {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+                visibility: visible !important;
+            }
+
+            /* Prevents awkward page breaks inside important sections */
+            .flagship, .strip, .trust-bar, .cap-item, .post-mortem, .proof-img-wrap, .section-divider {
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+
+            .wrap {
+                width: 100% !important;
+                margin: 0 !important;
+                padding: 0 5% !important;
+            }
+        }
     </style>
 </head>
 <body>
