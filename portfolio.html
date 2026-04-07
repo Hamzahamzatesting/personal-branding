@@ -1,687 +1,1113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hamza Zgaoui — Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamza Zgaoui — ROI & Conversion Operator</title>
+    <meta name="description" content="I recover $90K+ from dormant email lists and turn paid traffic into predictable revenue for D2C brands.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-:root {
-  --navy:  #07193E;
-  --navy2: #0F2D6B;
-  --blue:  #1A4494;
-  --gold:  #D4A853;
-  --gold2: #EAC97E;
-  --white: #FFFFFF;
-  --cream: #F8F8F6;
-  --text:  #111827;
-  --muted: #6B7280;
-  --border:#E5E7EB;
-  --green: #059669;
-}
+    <style>
+        /* ─────────────────────────────────────────
+           TOKENS
+        ───────────────────────────────────────── */
+        :root {
+            --bg:        #09090f;
+            --bg-panel:  #0f0f18;
+            --bg-card:   #13131f;
+            --text:      #f2f2f8;
+            --muted:     #6b7280;
+            --dim:       #374151;
+            --accent:    #00e5a0;
+            --accent-glow: rgba(0, 229, 160, 0.18);
+            --accent-dim:  rgba(0, 229, 160, 0.08);
+            --red:       #f87171;
+            --red-dim:   rgba(248, 113, 113, 0.06);
+            --border:    rgba(255,255,255,0.07);
+            --border-hover: rgba(0, 229, 160, 0.35);
+            --ease:      cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
-html { background: #1a1a1a; }
+        /* ─────────────────────────────────────────
+           RESET + BASE
+        ───────────────────────────────────────── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-body {
-  width: 210mm;
-  margin: 0 auto;
-  font-family: 'Inter', sans-serif;
-  color: var(--text);
-  background: #1a1a1a;
-}
+        html { scroll-behavior: smooth; }
 
-.page {
-  width: 210mm;
-  background: var(--white);
-}
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
 
-.hero {
-  background: var(--navy);
-  padding: 30px 36px 0;
-  position: relative;
-  overflow: hidden;
-}
+        h1, h2, h3, h4, h5,
+        .num { font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.03em; }
 
-.hero::after {
-  content: '';
-  position: absolute;
-  top: -80px; right: -80px;
-  width: 320px; height: 320px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(212,168,83,.18) 0%, transparent 70%);
-  pointer-events: none;
-}
+        img { display: block; max-width: 100%; border-radius: 6px; }
 
-.hero-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  position: relative;
-  z-index: 1;
-}
+        a { color: inherit; text-decoration: none; }
 
-.hero-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 50px;
-  font-weight: 900;
-  color: var(--white);
-  line-height: .92;
-  letter-spacing: -1.5px;
-}
+        /* ─────────────────────────────────────────
+           LAYOUT
+        ───────────────────────────────────────── */
+        .wrap {
+            width: min(1200px, 100% - 48px);
+            margin: 0 auto;
+        }
 
-.hero-name em {
-  font-style: italic;
-  color: var(--gold);
-}
+        /* ─────────────────────────────────────────
+           SCROLL-IN ANIMATION
+        ───────────────────────────────────────── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: none;
+        }
 
-.hero-role {
-  margin-top: 10px;
-  font-size: 9px;
-  font-weight: 600;
-  color: var(--gold);
-  letter-spacing: 4.5px;
-  text-transform: uppercase;
-}
+        /* ─────────────────────────────────────────
+           NAV
+        ───────────────────────────────────────── */
+        nav {
+            padding: 36px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.hero-contact {
-  text-align: right;
-  padding-top: 6px;
-}
+        .logo {
+            font-family: 'Space Grotesk';
+            font-weight: 800;
+            font-size: 22px;
+            letter-spacing: -0.04em;
+        }
+        .logo span { color: var(--accent); }
 
-.hero-contact p {
-  font-size: 9px;
-  color: rgba(255,255,255,.55);
-  line-height: 2.1;
-}
+        .btn-nav {
+            background: var(--accent);
+            color: #000;
+            padding: 13px 28px;
+            font-family: 'Space Grotesk';
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            border-radius: 4px;
+            transition: all 0.2s var(--ease);
+        }
+        .btn-nav:hover {
+            background: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,229,160,0.25);
+        }
 
-.hero-contact strong { color: var(--white); font-weight: 500; }
+        /* ─────────────────────────────────────────
+           HERO
+        ───────────────────────────────────────── */
+        .hero {
+            padding: 80px 0 100px;
+            position: relative;
+        }
 
-.metrics {
-  display: grid;
-  grid-template-columns: repeat(4,1fr);
-  margin-top: 26px;
-  position: relative;
-  z-index: 1;
-}
+        /* subtle radial glow behind headline */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: -200px;
+            width: 800px;
+            height: 600px;
+            background: radial-gradient(ellipse at center, rgba(0,229,160,0.06) 0%, transparent 65%);
+            pointer-events: none;
+        }
 
-.metric {
-  padding: 16px 14px 18px;
-  border-top: 1px solid rgba(255,255,255,.1);
-  border-right: 1px solid rgba(255,255,255,.08);
-}
-.metric:last-child { border-right: none; }
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--accent-dim);
+            border: 1px solid rgba(0,229,160,0.2);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+        }
+        .hero-eyebrow::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50%       { opacity: 0.5; transform: scale(0.75); }
+        }
 
-.m-num {
-  font-size: 36px;
-  font-weight: 900;
-  color: var(--gold);
-  line-height: 1;
-  letter-spacing: -2px;
-}
-.m-num sub, .m-num sup {
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 0;
-}
-.m-num sup { vertical-align: super; }
-.m-num sub { vertical-align: baseline; font-size: 14px; }
+        .hero h1 {
+            font-size: clamp(44px, 7.5vw, 96px);
+            line-height: 1.0;
+            max-width: 18ch;
+            margin-bottom: 28px;
+            font-weight: 800;
+        }
 
-.m-lbl {
-  font-size: 7.5px;
-  font-weight: 600;
-  color: rgba(255,255,255,.5);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-top: 5px;
-}
+        .hero h1 .hl { color: var(--accent); }
 
-.body {
-  padding: 20px 36px 26px;
-}
+        .hero-sub {
+            font-size: clamp(17px, 2vw, 21px);
+            color: var(--muted);
+            max-width: 560px;
+            margin-bottom: 72px;
+            line-height: 1.55;
+        }
 
-.section-label {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 14px;
-}
-.section-label span {
-  width: 22px; height: 2px;
-  background: var(--gold);
-  border-radius: 2px;
-  display: inline-block;
-}
-.section-label p {
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 3.5px;
-  text-transform: uppercase;
-  color: var(--navy2);
-}
+        /* Metric bar */
+        .hero-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            background: var(--bg-panel);
+        }
 
-.featured {
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  overflow: hidden;
-  margin-bottom: 12px;
-}
+        .hm-item {
+            padding: 36px 40px;
+            border-right: 1px solid var(--border);
+            position: relative;
+        }
+        .hm-item:last-child { border-right: none; }
 
-.featured-head {
-  background: var(--navy);
-  padding: 12px 18px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+        .hm-item::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s var(--ease);
+        }
+        .hm-item:hover::after { transform: scaleX(1); }
 
-.featured-head-left .cat {
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 3px;
-}
-.featured-head-left .ftitle {
-  font-family: 'Playfair Display', serif;
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--white);
-  line-height: 1.1;
-}
+        .hm-num {
+            font-family: 'Space Grotesk';
+            font-size: clamp(44px, 5.5vw, 68px);
+            color: var(--accent);
+            font-weight: 800;
+            line-height: 0.95;
+            margin-bottom: 10px;
+            text-shadow: 0 0 40px var(--accent-glow);
+        }
 
-.featured-badge {
-  background: var(--gold);
-  color: var(--navy);
-  padding: 8px 14px;
-  border-radius: 6px;
-  text-align: center;
-}
-.featured-badge .bn {
-  font-size: 24px;
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: -1px;
-}
-.featured-badge .bl {
-  font-size: 7px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  opacity: .75;
-  margin-top: 2px;
-}
+        .hm-label {
+            font-size: 13px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+        }
 
-.featured-body {
-  display: grid;
-  grid-template-columns: 1.1fr .9fr;
-  gap: 0;
-}
+        /* ─────────────────────────────────────────
+           SECTION DIVIDER
+        ───────────────────────────────────────── */
+        .section-divider {
+            padding: 100px 0 72px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+        .section-divider h2 {
+            font-size: clamp(13px, 1.5vw, 15px);
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--muted);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .section-divider-line {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+        .section-divider-count {
+            font-family: 'Space Grotesk';
+            font-size: 13px;
+            color: var(--dim);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
 
-.feat-text {
-  padding: 14px 18px;
-  border-right: 1px solid var(--border);
-}
+        /* ─────────────────────────────────────────
+           FLAGSHIP CASE
+        ───────────────────────────────────────── */
+        .flagship {
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 80px;
+        }
 
-.row {
-  margin-bottom: 9px;
-}
-.row:last-child { margin-bottom: 0; }
+        /* Accent bar at top */
+        .flagship-bar {
+            background: linear-gradient(90deg, var(--accent), rgba(0,229,160,0.2));
+            height: 4px;
+        }
 
-.lbl {
-  font-size: 7.5px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1.8px;
-  color: var(--gold);
-  margin-bottom: 2px;
-}
-.txt {
-  font-size: 9.5px;
-  line-height: 1.55;
-  color: #374151;
-}
-.txt strong { color: var(--navy); font-weight: 700; }
+        .flagship-inner { padding: 72px 72px 64px; }
 
-.feat-proof {
-  padding: 12px 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+        .flagship-tag {
+            display: inline-block;
+            font-family: 'Space Grotesk';
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            background: var(--accent-dim);
+            border: 1px solid rgba(0,229,160,0.2);
+            padding: 6px 14px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
 
-.rev-snap {
-  background: var(--cream);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 10px 12px;
-}
-.rev-snap .rs-label {
-  font-size: 7px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: var(--muted);
-  margin-bottom: 4px;
-}
-.rev-snap .rs-num {
-  font-size: 26px;
-  font-weight: 900;
-  color: var(--green);
-  letter-spacing: -1.5px;
-  line-height: 1;
-}
-.rev-snap .rs-note {
-  font-size: 7.5px;
-  color: var(--muted);
-  margin-top: 3px;
-  font-style: italic;
-}
+        .flagship-title {
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 800;
+            line-height: 1.0;
+            margin-bottom: 52px;
+        }
 
-.discord {
-  background: #2B2D31;
-  border-radius: 6px;
-  padding: 9px 10px;
-  flex: 1;
-}
-.discord-hdr {
-  font-size: 7px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: #96989D;
-  border-bottom: 1px solid rgba(255,255,255,.08);
-  padding-bottom: 6px;
-  margin-bottom: 7px;
-}
-.discord-hdr strong { color: #DCDDDE; }
+        /* 3-metric impact row */
+        .impact-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 72px;
+        }
 
-.dm {
-  display: flex;
-  align-items: flex-start;
-  gap: 6px;
-  margin-bottom: 6px;
-}
-.dm:last-child { margin-bottom: 0; }
+        .impact-cell {
+            background: var(--bg-card);
+            padding: 40px 36px;
+            position: relative;
+        }
 
-.av {
-  width: 20px; height: 20px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  font-size: 7px;
-  font-weight: 800;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+        .impact-cell .num {
+            font-size: clamp(44px, 5vw, 72px);
+            color: var(--accent);
+            font-weight: 800;
+            line-height: 0.9;
+            margin-bottom: 12px;
+            text-shadow: 0 0 60px var(--accent-glow);
+        }
 
-.dm-user {
-  font-size: 8.5px;
-  font-weight: 700;
-  line-height: 1;
-  margin-bottom: 1px;
-}
-.dm-text {
-  font-size: 9px;
-  color: #DCDDDE;
-  line-height: 1.4;
-}
+        .impact-cell .label {
+            font-size: 13px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+        }
 
-.cases {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 14px;
-}
+        /* Content grid: narrative + proof */
+        .case-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 72px;
+            align-items: start;
+            margin-bottom: 64px;
+        }
 
-.case {
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  overflow: hidden;
-}
+        .narrative-block h4 {
+            font-size: 11px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
 
-.case-head {
-  background: var(--cream);
-  padding: 10px 14px 8px;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 8px;
-}
-.case-head .cat {
-  font-size: 7.5px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--blue);
-  margin-bottom: 2px;
-}
-.case-head .ctitle {
-  font-size: 12.5px;
-  font-weight: 800;
-  color: var(--navy);
-  line-height: 1.2;
-}
+        .narrative-block .body {
+            font-size: 18px;
+            line-height: 1.65;
+            color: rgba(242,242,248,0.88);
+            margin-bottom: 40px;
+        }
 
-.case-badge {
-  background: var(--navy);
-  color: var(--gold);
-  padding: 6px 9px;
-  border-radius: 5px;
-  text-align: center;
-  flex-shrink: 0;
-}
-.case-badge .bn {
-  font-size: 14px;
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: -0.5px;
-}
-.case-badge .bl {
-  font-size: 6.5px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: rgba(255,255,255,.55);
-  margin-top: 2px;
-}
+        /* Proof gallery */
+        .proof-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
 
-.case-body {
-  padding: 10px 14px 12px;
-}
-.case-body .row { margin-bottom: 7px; }
-.case-body .row:last-child { margin-bottom: 0; }
+        .proof-img-wrap {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            background: #0c0c14;
+            transition: border-color 0.25s, transform 0.25s;
+        }
+        .proof-img-wrap:hover {
+            border-color: rgba(0,229,160,0.3);
+            transform: translateY(-2px);
+        }
+        .proof-img-wrap img { width: 100%; height: auto; object-fit: cover; }
 
-.skills {
-  border-top: 1px solid var(--border);
-  padding-top: 12px;
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 12px;
-}
+        .proof-caption {
+            font-size: 12px;
+            color: var(--muted);
+            text-align: center;
+            padding: 10px 12px 14px;
+            letter-spacing: 0.02em;
+        }
 
-.sk-col h4 {
-  font-size: 7.5px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: var(--navy);
-  margin-bottom: 7px;
-}
-.sk-tags { display: flex; flex-wrap: wrap; gap: 4px; }
-.sk-tag {
-  font-size: 8.5px;
-  font-weight: 500;
-  color: var(--navy2);
-  background: #EEF2FF;
-  border: 1px solid #C7D2FE;
-  padding: 2px 7px;
-  border-radius: 3px;
-}
+        /* Multi-screenshot grid */
+        .proof-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
 
-.footer {
-  background: var(--navy);
-  padding: 10px 36px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 20px;
-}
-.footer p { font-size: 8.5px; color: rgba(255,255,255,.4); letter-spacing: 1px; }
-.footer strong {
-  font-family: 'Playfair Display', serif;
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--gold);
-  letter-spacing: .5px;
-}
+        /* Post-mortem block */
+        .post-mortem {
+            background: var(--red-dim);
+            border-left: 5px solid var(--red);
+            border-radius: 0 8px 8px 0;
+            padding: 40px 48px;
+        }
 
-@media print {
-  html, body { background: white; width: 210mm; }
-  @page { size: A4 portrait; margin: 0; }
-}
-</style>
+        .pm-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--red);
+            margin-bottom: 10px;
+        }
+
+        .pm-title {
+            font-family: 'Space Grotesk';
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 14px;
+            color: var(--red);
+        }
+
+        .pm-body {
+            font-size: 17px;
+            line-height: 1.7;
+            color: rgba(242,242,248,0.8);
+        }
+
+        /* ─────────────────────────────────────────
+           SUPPORTING CASES — HORIZONTAL STRIPS
+        ───────────────────────────────────────── */
+        .strips {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 100px;
+        }
+
+        .strip {
+            display: grid;
+            grid-template-columns: 220px 1fr 280px 320px;
+            gap: 40px;
+            align-items: center;
+            padding: 40px 48px;
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: border-color 0.25s var(--ease), transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+        }
+        .strip:hover {
+            border-color: var(--border-hover);
+            transform: translateX(6px);
+            box-shadow: -4px 0 24px rgba(0,229,160,0.08);
+        }
+
+        .strip-channel {
+            font-family: 'Space Grotesk';
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .strip-channel .ch-tag {
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--muted);
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .strip-narrative .prob {
+            font-size: 12px;
+            color: var(--red);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 6px;
+        }
+        .strip-narrative .action {
+            font-size: 16px;
+            color: rgba(242,242,248,0.8);
+            line-height: 1.5;
+        }
+
+        .strip-result { text-align: right; }
+        .strip-result .res-num {
+            font-family: 'Space Grotesk';
+            font-size: clamp(36px, 3.5vw, 52px);
+            color: var(--accent);
+            font-weight: 800;
+            line-height: 1.0;
+            margin-bottom: 6px;
+            text-shadow: 0 0 40px var(--accent-glow);
+        }
+        .strip-result .res-lab {
+            font-size: 12px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+        }
+
+        .strip-proof {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            background: #0c0c14;
+            transition: border-color 0.25s;
+        }
+        .strip:hover .strip-proof {
+            border-color: rgba(0,229,160,0.25);
+        }
+        .strip-proof img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            object-position: top;
+            border-radius: 0;
+        }
+        .strip-proof .sp-cap {
+            font-size: 11px;
+            color: var(--muted);
+            padding: 8px 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ─────────────────────────────────────────
+           CAPABILITIES
+        ───────────────────────────────────────── */
+        .capabilities {
+            padding: 100px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .cap-headline {
+            margin-bottom: 60px;
+        }
+        .cap-headline .eyebrow {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--muted);
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .cap-headline h2 {
+            font-size: clamp(32px, 4vw, 52px);
+            font-weight: 800;
+        }
+
+        .cap-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .cap-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 28px 32px;
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            transition: border-color 0.25s, background 0.25s;
+        }
+        .cap-item:hover {
+            border-color: rgba(0,229,160,0.2);
+            background: var(--bg-card);
+        }
+
+        .cap-skill {
+            font-size: 16px;
+            color: var(--muted);
+            font-weight: 600;
+            flex: 1;
+        }
+        .cap-arrow {
+            color: var(--accent);
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        .cap-outcome {
+            font-family: 'Space Grotesk';
+            font-size: 18px;
+            font-weight: 700;
+            flex: 1;
+            text-align: right;
+        }
+
+        /* ─────────────────────────────────────────
+           TRUST BAR
+        ───────────────────────────────────────── */
+        .trust-bar {
+            padding: 80px 0;
+            border-top: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .trust-stat {
+            text-align: center;
+        }
+        .trust-stat .ts-num {
+            font-family: 'Space Grotesk';
+            font-size: clamp(32px, 3.5vw, 48px);
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+        .trust-stat .ts-label {
+            font-size: 13px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+        }
+
+        /* ─────────────────────────────────────────
+           FINAL CTA
+        ───────────────────────────────────────── */
+        .cta {
+            padding: 160px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta::before {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 800px; height: 400px;
+            background: radial-gradient(ellipse at bottom, rgba(0,229,160,0.08), transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta-sub {
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--muted);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .cta h2 {
+            font-size: clamp(40px, 5.5vw, 72px);
+            font-weight: 800;
+            line-height: 1.05;
+            max-width: 14ch;
+            margin: 0 auto 48px;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            background: var(--accent);
+            color: #000;
+            padding: 22px 60px;
+            font-family: 'Space Grotesk';
+            font-size: 18px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            border-radius: 6px;
+            transition: all 0.25s var(--ease);
+            box-shadow: 0 0 0 0 rgba(0,229,160,0.4);
+        }
+        .btn-cta:hover {
+            background: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 16px 48px rgba(0,229,160,0.3);
+        }
+
+        /* ─────────────────────────────────────────
+           FOOTER
+        ───────────────────────────────────────── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 56px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-name {
+            font-family: 'Space Grotesk';
+            font-weight: 700;
+            font-size: 16px;
+        }
+        .footer-name span { color: var(--muted); font-weight: 400; }
+
+        .footer-links {
+            display: flex;
+            gap: 32px;
+            font-size: 14px;
+            color: var(--muted);
+        }
+        .footer-links a {
+            color: var(--muted);
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--text); }
+
+        /* ─────────────────────────────────────────
+           MOBILE
+        ───────────────────────────────────────── */
+        @media (max-width: 1024px) {
+            .strip {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto auto;
+            }
+            .strip-proof { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            .wrap { width: calc(100% - 32px); }
+
+            .hero { padding: 56px 0 72px; }
+            .hero h1 { font-size: 40px; }
+            .hero-sub { font-size: 16px; margin-bottom: 48px; }
+
+            .hero-metrics { grid-template-columns: 1fr; border-radius: 8px; }
+            .hm-item { border-right: none; border-bottom: 1px solid var(--border); padding: 28px 24px; }
+            .hm-item:last-child { border-bottom: none; }
+
+            .flagship-inner { padding: 32px 24px; }
+            .impact-row { grid-template-columns: 1fr; gap: 0; }
+            .case-content { grid-template-columns: 1fr; gap: 40px; }
+            .proof-grid-2 { grid-template-columns: 1fr; }
+            .post-mortem { padding: 28px 24px; }
+
+            .strips { gap: 8px; }
+            .strip {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 28px 24px;
+                transform: none !important;
+            }
+            .strip-result { text-align: left; }
+            .strip-proof { display: block; }
+            .strip-proof img { height: 180px; }
+
+            .cap-grid { grid-template-columns: 1fr; }
+            .cap-item { flex-direction: column; align-items: flex-start; gap: 12px; }
+            .cap-outcome { text-align: left; }
+
+            .trust-bar { grid-template-columns: repeat(2, 1fr); gap: 28px; }
+
+            footer { flex-direction: column; gap: 20px; text-align: center; }
+            .footer-links { gap: 20px; flex-wrap: wrap; justify-content: center; }
+
+            .cta { padding: 100px 0; }
+        }
+
+        @media (max-width: 480px) {
+            .trust-bar { grid-template-columns: 1fr 1fr; }
+            .hero h1 { font-size: 34px; }
+            .flagship-title { font-size: 30px; }
+        }
+    </style>
 </head>
 <body>
-<div class="page">
 
-  <div class="hero">
-    <div class="hero-row">
-      <div>
-        <div class="hero-name">Hamza <em>Zgaoui</em></div>
-        <div class="hero-role">Community Manager &nbsp;·&nbsp; Project Manager</div>
-      </div>
-      <div class="hero-contact">
-        <p><strong>hamzazgaoui97@gmail.com</strong></p>
-        <p><strong>+213 697 33 20 36</strong></p>
-        <p>linkedin.com/in/<strong>hamzazgaoui</strong></p>
-        <p>Open to new opportunities</p>
-      </div>
-    </div>
-    <div class="metrics">
-      <div class="metric">
-        <div class="m-num"><sup>$</sup>90K<sup>+</sup></div>
-        <div class="m-lbl">Revenue Generated</div>
-      </div>
-      <div class="metric">
-        <div class="m-num">1<sub>,</sub>400<sup>+</sup></div>
-        <div class="m-lbl">Followers Built</div>
-      </div>
-      <div class="metric">
-        <div class="m-num">500<sup>+</sup></div>
-        <div class="m-lbl">Affiliates Managed</div>
-      </div>
-      <div class="metric">
-        <div class="m-num">6<sup>+</sup></div>
-        <div class="m-lbl">Clients Acquired</div>
-      </div>
-    </div>
-  </div>
+<div class="wrap">
 
-  <div class="body">
+    <!-- ═══════════════════════════════════════
+         NAV
+    ═══════════════════════════════════════ -->
+    <nav class="reveal">
+        <div class="logo">Hamza Zgaoui<span>.</span></div>
+        <a href="mailto:hamzazgaoui97@gmail.com" class="btn-nav">Let's Talk →</a>
+    </nav>
 
-    <div class="section-label">
-      <span></span>
-      <p>Selected Work — Case Studies</p>
-    </div>
+    <!-- ═══════════════════════════════════════
+         HERO
+    ═══════════════════════════════════════ -->
+    <section class="hero">
+        <div class="hero-eyebrow reveal" style="transition-delay:0.05s">D2C Marketing Operator · Open to Work</div>
 
-    <div class="featured">
-      <div class="featured-head">
-        <div class="featured-head-left">
-          <div class="cat">01 &mdash; Email Marketing &amp; Campaign Strategy</div>
-          <div class="ftitle">Gamified Flash Sale Campaign</div>
-        </div>
-        <div class="featured-badge">
-          <div class="bn">$90K+</div>
-          <div class="bl">Revenue</div>
-        </div>
-      </div>
+        <h1 class="reveal" style="transition-delay:0.12s">
+            I recover <span class="hl">$90K+</span> from dormant email lists and turn paid traffic into predictable revenue for D2C brands.
+        </h1>
 
-      <div class="featured-body">
-        <div class="feat-text">
-          <div class="row">
-            <div class="lbl">Challenge</div>
-            <div class="txt">Drive maximum Black Friday &amp; Christmas revenue for a prop-trading platform in a saturated market.</div>
-          </div>
-          <div class="row">
-            <div class="lbl">What I Did</div>
-            <div class="txt">Created a gamified discount mechanic: <strong>logo color intensity = discount level</strong> — the brighter the green, the bigger the deal. Built 7-day anticipation across email, website &amp; dashboard. Flash windows lasted just <strong>2 minutes</strong>, making the community watch every channel in real time. Set up Klaviyo automation end-to-end, wrote 12+ email copies, managed coupons, logo timing &amp; community monitoring.</div>
-          </div>
-          <div class="row">
-            <div class="lbl">Result</div>
-            <div class="txt"><strong>$90K+ in seasonal revenue.</strong> Community self-organized — refreshing every 5 minutes, screaming deal codes in Discord the moment they went live.</div>
-          </div>
-        </div>
+        <p class="hero-sub reveal" style="transition-delay:0.18s">
+            Lifecycle Architecture · Paid Media Validation · Growth Systems
+        </p>
 
-        <div class="feat-proof">
-          <div class="rev-snap">
-            <div class="rs-label">Campaign Revenue Snapshot</div>
-            <div class="rs-num">$37,925<span style="font-size:16px;letter-spacing:0">.46</span></div>
-            <div class="rs-note">Partial view — full campaign reached $90K+</div>
-          </div>
-
-          <div class="discord">
-            <div class="discord-hdr">Live community reaction — <strong>#general</strong></div>
-            <div class="dm">
-              <div class="av" style="background:#5865F2">D</div>
-              <div>
-                <div class="dm-user" style="color:#5865F2">DBarreiro</div>
-                <div class="dm-text">letsgooo 90% 🎉</div>
-              </div>
+        <div class="hero-metrics reveal" style="transition-delay:0.25s">
+            <div class="hm-item">
+                <div class="hm-num">$90K+</div>
+                <div class="hm-label">Recovered Email Revenue · &lt;90 Days</div>
             </div>
-            <div class="dm">
-              <div class="av" style="background:#ED4245">M</div>
-              <div>
-                <div class="dm-user" style="color:#ED4245">med.noor</div>
-                <div class="dm-text">CATCH THE 90%  Go now 🔥</div>
-              </div>
+            <div class="hm-item">
+                <div class="hm-num">300%</div>
+                <div class="hm-label">Lift in Sequence CTR</div>
             </div>
-            <div class="dm">
-              <div class="av" style="background:#57F287">R</div>
-              <div>
-                <div class="dm-user" style="color:#57F287">Rayrayboi</div>
-                <div class="dm-text">Yeah bro free 50k s2f+ 🔥  Ngl, i got extremely lucky. Hella quick.</div>
-              </div>
+            <div class="hm-item">
+                <div class="hm-num">1.4K+</div>
+                <div class="hm-label">Targeted Audience Growth</div>
             </div>
-            <div class="dm">
-              <div class="av" style="background:#FEE75C;color:#333">S</div>
-              <div>
-                <div class="dm-user" style="color:#FEE75C">Sparta-Nik</div>
-                <div class="dm-text">no ways congrats man ❤️ that shit was insanely quick</div>
-              </div>
-            </div>
-            <div class="dm">
-              <div class="av" style="background:#EB459E">D</div>
-              <div>
-                <div class="dm-user" style="color:#EB459E">Dmariner32</div>
-                <div class="dm-text">I got it! Thank you TTT 🙏🙏🙏</div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         SECTION DIVIDER
+    ═══════════════════════════════════════ -->
+    <div class="section-divider reveal">
+        <h2>Proven Systems &amp; Selected Work</h2>
+        <div class="section-divider-line"></div>
+        <div class="section-divider-count">5 CASES</div>
     </div>
 
-    <div class="cases">
+    <!-- ═══════════════════════════════════════
+         FLAGSHIP CASE — EMAIL $90K
+    ═══════════════════════════════════════ -->
+    <section class="flagship reveal">
+        <div class="flagship-bar"></div>
+        <div class="flagship-inner">
 
-      <div class="case">
-        <div class="case-head">
-          <div>
-            <div class="cat">02 &mdash; Social Media</div>
-            <div class="ctitle">Instagram Growth<br>From Zero</div>
-          </div>
-          <div class="case-badge">
-            <div class="bn">1,400+</div>
-            <div class="bl">Followers</div>
-          </div>
-        </div>
-        <div class="case-body">
-          <div class="row"><div class="lbl">Challenge</div><div class="txt">Launch and grow a brand-new Instagram for a fintech/trading brand with zero existing audience.</div></div>
-          <div class="row"><div class="lbl">What I Did</div><div class="txt">Built a full content engine: weekly market events, payout announcements &amp; social proof. Wrote all captions &amp; briefs, QC’d designer output, published 3–4×/week, managed all comments &amp; DMs.</div></div>
-          <div class="row"><div class="lbl">Result</div><div class="txt"><strong>0 → 1,400+ followers in 9 months.</strong> Top post: 39 likes, 14 comments, 4 shares — organically.</div></div>
-        </div>
-      </div>
+            <div class="flagship-tag">Flagship Deep-Dive · Email Lifecycle</div>
+            <h2 class="flagship-title">Unlocking $90K From a<br>Dormant Email List</h2>
 
-      <div class="case">
-        <div class="case-head">
-          <div>
-            <div class="cat">03 &mdash; Performance Marketing</div>
-            <div class="ctitle">Paid Campaign<br>Creative Pipeline</div>
-          </div>
-          <div class="case-badge">
-            <div class="bn">$2K/mo</div>
-            <div class="bl">Ad Spend</div>
-          </div>
-        </div>
-        <div class="case-body">
-          <div class="row"><div class="lbl">Challenge</div><div class="txt">Maintain a non-stop flow of paid ad creatives across promotions, education &amp; product launches simultaneously.</div></div>
-          <div class="row"><div class="lbl">What I Did</div><div class="txt">Owned the full creative pipeline: wrote ad copy, briefed &amp; QC’d designers, got manager sign-off, delivered structured briefs to the media buyer for every campaign type.</div></div>
-          <div class="row"><div class="lbl">Result</div><div class="txt">Sustained <strong>$1,500–$2,000/month</strong> in paid activity with zero creative delays or missed launches.</div></div>
-        </div>
-      </div>
+            <!-- Impact Row: numbers first -->
+            <div class="impact-row">
+                <div class="impact-cell">
+                    <div class="num">$90K+</div>
+                    <div class="label">Revenue Recovered</div>
+                </div>
+                <div class="impact-cell">
+                    <div class="num">&lt;90</div>
+                    <div class="label">Days to Full Execution</div>
+                </div>
+                <div class="impact-cell">
+                    <div class="num">300%</div>
+                    <div class="label">CTR Lift in Sequences</div>
+                </div>
+            </div>
 
-      <div class="case">
-        <div class="case-head">
-          <div>
-            <div class="cat">04 &mdash; Business Development</div>
-            <div class="ctitle">Client Acquisition<br>Audits</div>
-          </div>
-          <div class="case-badge">
-            <div class="bn">6+</div>
-            <div class="bl">Clients Won</div>
-          </div>
-        </div>
-        <div class="case-body">
-          <div class="row"><div class="lbl">Challenge</div><div class="txt">Convert cold prospects across completely different industries into signed clients.</div></div>
-          <div class="row"><div class="lbl">What I Did</div><div class="txt">Produced full digital audits per prospect: SEO, social media, website UX, competitor benchmarking, and a prioritised action plan. Industries: woodmaking, fashion, chocolate &amp; more.</div></div>
-          <div class="row"><div class="lbl">Result</div><div class="txt"><strong>6+ clients signed.</strong> Audit format became the agency’s standard sales tool.</div></div>
-        </div>
-      </div>
+            <!-- Narrative + Proof -->
+            <div class="case-content">
+                <div class="narrative">
 
-      <div class="case">
-        <div class="case-head">
-          <div>
-            <div class="cat">05 &mdash; Community &amp; Operations</div>
-            <div class="ctitle">Affiliate Program<br>Management</div>
-          </div>
-          <div class="case-badge">
-            <div class="bn">500+</div>
-            <div class="bl">Affiliates</div>
-          </div>
+                    <div class="narrative-block">
+                        <h4>The Problem</h4>
+                        <p class="body">A massive subscriber list sat dormant — sub-0.5% conversion rates. The brand was spending heavily to acquire traffic while failing entirely to retain it. Generic batch-and-blast emails had destroyed sender reputation and list trust.</p>
+                    </div>
+
+                    <div class="narrative-block">
+                        <h4>The Fix</h4>
+                        <p class="body">Migrated the full user base out of spray-and-pray newsletters into intent-based segmentation profiles. Rebuilt 4 core flows from scratch: Abandon Cart, Welcome Series, Post-Purchase Upsell, and Win-Back — each tuned by behavioral signal, not calendar date.</p>
+                    </div>
+
+                    <div class="narrative-block">
+                        <h4>The Result</h4>
+                        <p class="body">$90K+ in attributable email revenue recovered in under 90 days. CTR lifted 300%. Open rates stabilized. The list became a reliable, owned channel — not a graveyard.</p>
+                    </div>
+
+                </div>
+
+                <div class="proof-gallery">
+                    <div class="proof-img-wrap">
+                        <img src="assets/proof/revenue-snapshot.png" alt="Revenue snapshot showing recovered email revenue">
+                        <div class="proof-caption">Revenue dashboard — attributable email recovery</div>
+                    </div>
+                    <div class="proof-grid-2">
+                        <div class="proof-img-wrap">
+                            <img src="assets/proof/email-signal-90-70.png" alt="Email open and click signal metrics">
+                            <div class="proof-caption">Email signal — 90% open, 70% CTR on reactivation sequence</div>
+                        </div>
+                        <div class="proof-img-wrap">
+                            <img src="assets/proof/order-proof.png" alt="Order confirmation proof from email flow">
+                            <div class="proof-caption">Order proof — direct email-attributed conversions</div>
+                        </div>
+                    </div>
+                    <div class="proof-img-wrap">
+                        <img src="assets/proof/email-to-discord-flow.png" alt="Email to Discord cross-channel flow architecture">
+                        <div class="proof-caption">Cross-channel flow: Email → Discord community loop</div>
+                    </div>
+                    <div class="proof-img-wrap">
+                        <img src="assets/proof/how-it-worked.png" alt="System architecture: how the email lifecycle worked">
+                        <div class="proof-caption">System architecture — how the lifecycle engine was built</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Post-Mortem -->
+            <div class="post-mortem">
+                <div class="pm-label">Post-Mortem · Risk Ownership</div>
+                <div class="pm-title">Why the Initial Upsell Failed — and How We Fixed It</div>
+                <p class="pm-body">We drove immediate post-purchase upsells. Open rates hit 60%, but conversions were negligible — a mismatch between email intent (transactional receipts) and aggressive sales copy. Recognizing the problem fast, I delayed the upsell to the 3rd email in the sequence. That single timing shift secured trust and recovered 14% of second-purchase revenue immediately. Knowing when not to sell is the skill most marketers skip.</p>
+            </div>
+
         </div>
-        <div class="case-body">
-          <div class="row"><div class="lbl">Challenge</div><div class="txt">Keep a 500+ affiliate network engaged, informed, and accurately paid across Discord &amp; Email.</div></div>
-          <div class="row"><div class="lbl">What I Did</div><div class="txt">Broadcast all promos &amp; launches, handled daily affiliate queries, coordinated monthly commission verification with finance, maintained the affiliate dashboard.</div></div>
-          <div class="row"><div class="lbl">Result</div><div class="txt"><strong>Zero commission disputes</strong> across 500+ affiliates. Streamlined comms cut response times significantly.</div></div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         SECTION DIVIDER 2
+    ═══════════════════════════════════════ -->
+    <div class="section-divider reveal">
+        <h2>Supporting Multi-Channel Wins</h2>
+        <div class="section-divider-line"></div>
+        <div class="section-divider-count">4 CHANNELS</div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         SUPPORTING STRIPS
+    ═══════════════════════════════════════ -->
+    <div class="strips">
+
+        <!-- SOCIAL GROWTH -->
+        <div class="strip reveal">
+            <div class="strip-channel">
+                <span class="ch-tag">Channel 01</span>
+                Social Velocity
+            </div>
+            <div class="strip-narrative">
+                <div class="prob">Problem: Zero organic trust for brand launch.</div>
+                <div class="action">Deployed a 4×/week high-edge educational content cadence on Instagram, built to attract buyers — not followers. Optimised for profile-to-follow conversion.</div>
+            </div>
+            <div class="strip-result">
+                <div class="res-num">1.4K+</div>
+                <div class="res-lab">Targeted Followers · 9 Months</div>
+            </div>
+            <div class="strip-proof">
+                <img src="assets/proof/instagram-profile.png" alt="Instagram profile showing audience growth">
+                <div class="sp-cap">Instagram — organic growth from zero</div>
+            </div>
         </div>
-      </div>
+
+        <!-- PAID MEDIA -->
+        <div class="strip reveal">
+            <div class="strip-channel">
+                <span class="ch-tag">Channel 02</span>
+                Paid Media
+            </div>
+            <div class="strip-narrative">
+                <div class="prob">Problem: Chaotic creative handoffs blocking ad scaling.</div>
+                <div class="action">Built a creative validation pipeline from copywriter to media buyer. Introduced structured testing cycles — no creative goes live without a brief, variant, and exit metric.</div>
+            </div>
+            <div class="strip-result">
+                <div class="res-num">$2K/mo</div>
+                <div class="res-lab">Stable Validated Spend</div>
+            </div>
+            <div class="strip-proof">
+                <img src="assets/proof/free-50k-signal.png" alt="Paid media reach and signal data">
+                <div class="sp-cap">Campaign reach — validated media deployment</div>
+            </div>
+        </div>
+
+        <!-- AFFILIATE OPS -->
+        <div class="strip reveal">
+            <div class="strip-channel">
+                <span class="ch-tag">Channel 03</span>
+                Affiliate Ops
+            </div>
+            <div class="strip-narrative">
+                <div class="prob">Problem: Partner trust fracturing due to poor comms &amp; late payouts.</div>
+                <div class="action">Centralised partner communication into Discord + Email updates on a fixed weekly cadence. Aligned payout schedules with finance and resolved all outstanding disputes.</div>
+            </div>
+            <div class="strip-result">
+                <div class="res-num">500+</div>
+                <div class="res-lab">Partners Managed · Zero Disputes</div>
+            </div>
+            <div class="strip-proof">
+                <img src="assets/proof/discord-win-replies.png" alt="Discord partner engagement and win confirmations">
+                <div class="sp-cap">Discord — partner wins and engagement</div>
+            </div>
+        </div>
+
+        <!-- CLIENT AUDITS -->
+        <div class="strip reveal">
+            <div class="strip-channel">
+                <span class="ch-tag">Channel 04</span>
+                Client Audits
+            </div>
+            <div class="strip-narrative">
+                <div class="prob">Problem: Generic pitches failing to close B2B prospects.</div>
+                <div class="action">Executed full-funnel competitor audits proving immediate ROI gaps before the sales call. Gave each prospect a concrete cost-of-inaction number they couldn't ignore.</div>
+            </div>
+            <div class="strip-result">
+                <div class="res-num">6+</div>
+                <div class="res-lab">B2B Clients Converted</div>
+            </div>
+            <div class="strip-proof">
+                <img src="assets/proof/community-quote-proof.png" alt="Community testimonial and social proof">
+                <div class="sp-cap">Client proof — community validation</div>
+            </div>
+        </div>
 
     </div>
 
-    <div class="skills">
-      <div class="sk-col">
-        <h4>Marketing &amp; Content</h4>
-        <div class="sk-tags">
-          <span class="sk-tag">Email Marketing</span>
-          <span class="sk-tag">Klaviyo</span>
-          <span class="sk-tag">Copywriting</span>
-          <span class="sk-tag">Content Strategy</span>
-          <span class="sk-tag">Campaign Ops</span>
-        </div>
-      </div>
-      <div class="sk-col">
-        <h4>Social &amp; Community</h4>
-        <div class="sk-tags">
-          <span class="sk-tag">Instagram</span>
-          <span class="sk-tag">Discord</span>
-          <span class="sk-tag">Community Mgmt</span>
-          <span class="sk-tag">Meta Ads</span>
-          <span class="sk-tag">Affiliate Mgmt</span>
-        </div>
-      </div>
-      <div class="sk-col">
-        <h4>Strategy &amp; Analytics</h4>
-        <div class="sk-tags">
-          <span class="sk-tag">SEO Audit</span>
-          <span class="sk-tag">Competitor Analysis</span>
-          <span class="sk-tag">Project Management</span>
-          <span class="sk-tag">Client Reporting</span>
-        </div>
-      </div>
+    <!-- ═══════════════════════════════════════
+         ADDITIONAL PROOF — DISCORD COMMUNITY
+    ═══════════════════════════════════════ -->
+    <div class="section-divider reveal">
+        <h2>Community + Engagement Proof</h2>
+        <div class="section-divider-line"></div>
     </div>
 
-  </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:100px;" class="reveal">
+        <div class="proof-img-wrap">
+            <img src="assets/proof/discord-refresh-thread.png" alt="Discord refresh thread showing active community management">
+            <div class="proof-caption">Discord refresh thread — proactive partner communication system</div>
+        </div>
+        <div class="proof-img-wrap">
+            <img src="assets/proof/discord-win-replies.png" alt="Discord win replies showing affiliate partner excitement">
+            <div class="proof-caption">Affiliate Discord wins — partner engagement culture built from scratch</div>
+        </div>
+    </div>
 
-  <div class="footer">
-    <p>Portfolio · 2025</p>
-    <strong>Hamza Zgaoui</strong>
-    <p>hamzazgaoui97@gmail.com</p>
-  </div>
+    <!-- ═══════════════════════════════════════
+         CAPABILITIES
+    ═══════════════════════════════════════ -->
+    <section class="capabilities reveal">
+        <div class="cap-headline">
+            <div class="eyebrow">What I deliver</div>
+            <h2>Skills → Business Outcomes</h2>
+        </div>
+        <div class="cap-grid">
+            <div class="cap-item">
+                <div class="cap-skill">Email &amp; Lifecycle</div>
+                <div class="cap-arrow">→</div>
+                <div class="cap-outcome">LTV Maximization</div>
+            </div>
+            <div class="cap-item">
+                <div class="cap-skill">Paid Media Validation</div>
+                <div class="cap-arrow">→</div>
+                <div class="cap-outcome">CAC Stabilization</div>
+            </div>
+            <div class="cap-item">
+                <div class="cap-skill">Organic &amp; Social Growth</div>
+                <div class="cap-arrow">→</div>
+                <div class="cap-outcome">Trust at Scale</div>
+            </div>
+            <div class="cap-item">
+                <div class="cap-skill">Affiliate &amp; Partner Ops</div>
+                <div class="cap-arrow">→</div>
+                <div class="cap-outcome">Frictionless Revenue</div>
+            </div>
+            <div class="cap-item">
+                <div class="cap-skill">Full-Funnel Audits</div>
+                <div class="cap-arrow">→</div>
+                <div class="cap-outcome">Immediate ROI Gaps Found</div>
+            </div>
+            <div class="cap-item">
+                <div class="cap-skill">Cross-Channel Systems</div>
+                <div class="cap-arrow">→</div>
+                <div class="cap-outcome">Predictable, Scalable Growth</div>
+            </div>
+        </div>
+    </section>
 
-</div>
+    <!-- ═══════════════════════════════════════
+         TRUST BAR
+    ═══════════════════════════════════════ -->
+    <div class="trust-bar reveal">
+        <div class="trust-stat">
+            <div class="ts-num">$90K+</div>
+            <div class="ts-label">Email Revenue</div>
+        </div>
+        <div class="trust-stat">
+            <div class="ts-num">500+</div>
+            <div class="ts-label">Partners Managed</div>
+        </div>
+        <div class="trust-stat">
+            <div class="ts-num">6+</div>
+            <div class="ts-label">B2B Clients Won</div>
+        </div>
+        <div class="trust-stat">
+            <div class="ts-num">5</div>
+            <div class="ts-label">Channels Mastered</div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         FINAL CTA
+    ═══════════════════════════════════════ -->
+    <section class="cta reveal">
+        <p class="cta-sub">Ready to work?</p>
+        <h2>Stop paying for clicks when your funnel leaks revenue.</h2>
+        <a href="mailto:hamzazgaoui97@gmail.com" class="btn-cta">Let's Fix It →</a>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         FOOTER
+    ═══════════════════════════════════════ -->
+    <footer class="reveal">
+        <div class="footer-name">Hamza Zgaoui <span>// Digital Marketing Operator</span></div>
+        <div class="footer-links">
+            <a href="mailto:hamzazgaoui97@gmail.com">hamzazgaoui97@gmail.com</a>
+            <a href="tel:+213697332036">+213 697 33 20 36</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+    </footer>
+
+</div><!-- /wrap -->
+
+<!-- ═══════════════════════════════════════
+     SCROLL REVEAL
+═══════════════════════════════════════ -->
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
 </body>
 </html>
